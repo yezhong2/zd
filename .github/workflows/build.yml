@@ -1,0 +1,38 @@
+name: Build Mod APK
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Generate debug keystore
+        run: |
+          keytool -genkey -noprompt \
+            -dname "CN=Android Debug,O=Android,C=US" \
+            -keystore debug.keystore \
+            -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass android -keypass android
+
+      - name: Package APK
+        run: |
+          zip -r unsigned.apk . -x "*/\.*" "*.apk" "*.keystore" ".github/*"
+          jarsigner -verbose -keystore debug.keystore -storepass android -keypass android \
+            -sigalg SHA256withRSA -digestalg SHA-256 unsigned.apk androiddebugkey
+          mv unsigned.apk mod_signed.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod_signed_apk
+          path: mod_signed.apk
