@@ -7,7 +7,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -18,20 +19,17 @@ jobs:
       - name: Generate debug keystore
         run: |
           keytool -genkey -noprompt \
-            -dname "CN=Android Debug,O=Android,C=US" \
-            -keystore debug.keystore \
             -alias androiddebugkey \
             -keyalg RSA -keysize 2048 -validity 10000 \
+            -keystore debug.keystore \
             -storepass android -keypass android
 
-      - name: Package APK
+      - name: Sign APK
         run: |
-          zip -r unsigned.apk . -x "*/\.*" "*.apk" "*.keystore" ".github/*"
-          jarsigner -verbose -keystore debug.keystore -storepass android -keypass android \
-            -sigalg SHA256withRSA -digestalg SHA-256 unsigned.apk androiddebugkey
-          mv unsigned.apk mod_signed.apk
+          apksigner sign --ks debug.keystore --ks-pass pass:android --key-pass pass:android --ks-key-alias androiddebugkey app.apk
+          mv app.apk mod_signed.apk
 
-      - name: Upload APK
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: mod_signed_apk
