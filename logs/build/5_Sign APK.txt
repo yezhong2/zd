@@ -1,0 +1,10 @@
+﻿2026-05-03T20:43:59.3375510Z ##[group]Run apksigner sign --ks debug.keystore --ks-pass pass:android --key-pass pass:android --ks-key-alias androiddebugkey app.apk
+2026-05-03T20:43:59.3376592Z [36;1mapksigner sign --ks debug.keystore --ks-pass pass:android --key-pass pass:android --ks-key-alias androiddebugkey app.apk[0m
+2026-05-03T20:43:59.3377215Z [36;1mmv app.apk mod_signed.apk[0m
+2026-05-03T20:43:59.3400140Z shell: /usr/bin/bash -e {0}
+2026-05-03T20:43:59.3400430Z env:
+2026-05-03T20:43:59.3400751Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+2026-05-03T20:43:59.3401288Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.18-8/x64
+2026-05-03T20:43:59.3401692Z ##[endgroup]
+2026-05-03T20:43:59.3449451Z /home/runner/work/_temp/76a8b18f-e744-4c56-9a51-44312bd46d09.sh: line 1: apksigner: command not found
+2026-05-03T20:43:59.3461954Z ##[error]Process completed with exit code 127.

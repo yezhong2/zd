@@ -7,15 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
+      - name: Install Android SDK Build-Tools
+        run: |
+          sudo apt update
+          sudo apt install -y apksigner
       - name: Generate debug keystore
         run: |
           keytool -genkey -noprompt \
@@ -24,14 +24,11 @@ jobs:
             -keystore debug.keystore \
             -storepass android -keypass android \
             -dname "CN=Android Debug, O=Android, C=US"
-
       - name: Sign APK
         run: |
           apksigner sign --ks debug.keystore --ks-pass pass:android --key-pass pass:android --ks-key-alias androiddebugkey app.apk
           mv app.apk mod_signed.apk
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: mod_signed_apk
           path: mod_signed.apk

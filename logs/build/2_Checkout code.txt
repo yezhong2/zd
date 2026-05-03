@@ -1,0 +1,72 @@
+﻿2026-05-03T20:43:55.9618628Z ##[group]Run actions/checkout@v4
+2026-05-03T20:43:55.9619470Z with:
+2026-05-03T20:43:55.9619868Z   repository: yezhong2/zd
+2026-05-03T20:43:55.9620479Z   token: ***
+2026-05-03T20:43:55.9620864Z   ssh-strict: true
+2026-05-03T20:43:55.9621240Z   ssh-user: git
+2026-05-03T20:43:55.9621650Z   persist-credentials: true
+2026-05-03T20:43:55.9622097Z   clean: true
+2026-05-03T20:43:55.9622488Z   sparse-checkout-cone-mode: true
+2026-05-03T20:43:55.9622951Z   fetch-depth: 1
+2026-05-03T20:43:55.9623326Z   fetch-tags: false
+2026-05-03T20:43:55.9623715Z   show-progress: true
+2026-05-03T20:43:55.9624108Z   lfs: false
+2026-05-03T20:43:55.9625057Z   submodules: false
+2026-05-03T20:43:55.9625707Z   set-safe-directory: true
+2026-05-03T20:43:55.9626701Z ##[endgroup]
+2026-05-03T20:43:56.0741946Z Syncing repository: yezhong2/zd
+2026-05-03T20:43:56.0743579Z ##[group]Getting Git version info
+2026-05-03T20:43:56.0744540Z Working directory is '/home/runner/work/zd/zd'
+2026-05-03T20:43:56.0745546Z [command]/usr/bin/git version
+2026-05-03T20:43:56.0777247Z git version 2.53.0
+2026-05-03T20:43:56.0803763Z ##[endgroup]
+2026-05-03T20:43:56.0819967Z Temporarily overriding HOME='/home/runner/work/_temp/e216d999-75d7-4774-9d30-fb1d54739827' before making global git config changes
+2026-05-03T20:43:56.0822356Z Adding repository directory to the temporary git global config as a safe directory
+2026-05-03T20:43:56.0833444Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/zd/zd
+2026-05-03T20:43:56.0864277Z Deleting the contents of '/home/runner/work/zd/zd'
+2026-05-03T20:43:56.0867752Z ##[group]Initializing the repository
+2026-05-03T20:43:56.0871543Z [command]/usr/bin/git init /home/runner/work/zd/zd
+2026-05-03T20:43:56.0978452Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-05-03T20:43:56.0980230Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-05-03T20:43:56.0981875Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-05-03T20:43:56.0983594Z hint: call:
+2026-05-03T20:43:56.0984461Z hint:
+2026-05-03T20:43:56.0985373Z hint: 	git config --global init.defaultBranch <name>
+2026-05-03T20:43:56.0986428Z hint:
+2026-05-03T20:43:56.0987382Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-05-03T20:43:56.0988883Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-05-03T20:43:56.0990142Z hint:
+2026-05-03T20:43:56.0990847Z hint: 	git branch -m <name>
+2026-05-03T20:43:56.0991615Z hint:
+2026-05-03T20:43:56.0992678Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-05-03T20:43:56.0994566Z Initialized empty Git repository in /home/runner/work/zd/zd/.git/
+2026-05-03T20:43:56.0996995Z [command]/usr/bin/git remote add origin https://github.com/yezhong2/zd
+2026-05-03T20:43:56.1024069Z ##[endgroup]
+2026-05-03T20:43:56.1025637Z ##[group]Disabling automatic garbage collection
+2026-05-03T20:43:56.1029586Z [command]/usr/bin/git config --local gc.auto 0
+2026-05-03T20:43:56.1057607Z ##[endgroup]
+2026-05-03T20:43:56.1058809Z ##[group]Setting up auth
+2026-05-03T20:43:56.1065423Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-05-03T20:43:56.1095578Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-05-03T20:43:56.1388305Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-05-03T20:43:56.1416279Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-05-03T20:43:56.1627609Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-05-03T20:43:56.1655701Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-05-03T20:43:56.1892835Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-05-03T20:43:56.1926527Z ##[endgroup]
+2026-05-03T20:43:56.1927372Z ##[group]Fetching the repository
+2026-05-03T20:43:56.1935047Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +559c0a53d0837643233a0aa0c33e3f1ea397a973:refs/remotes/origin/main
+2026-05-03T20:43:56.3857793Z From https://github.com/yezhong2/zd
+2026-05-03T20:43:56.3859154Z  * [new ref]         559c0a53d0837643233a0aa0c33e3f1ea397a973 -> origin/main
+2026-05-03T20:43:56.3884980Z ##[endgroup]
+2026-05-03T20:43:56.3886133Z ##[group]Determining the checkout info
+2026-05-03T20:43:56.3887587Z ##[endgroup]
+2026-05-03T20:43:56.3892923Z [command]/usr/bin/git sparse-checkout disable
+2026-05-03T20:43:56.3929256Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-05-03T20:43:56.3954086Z ##[group]Checking out the ref
+2026-05-03T20:43:56.3958987Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-05-03T20:43:56.3994752Z Switched to a new branch 'main'
+2026-05-03T20:43:56.3997709Z branch 'main' set up to track 'origin/main'.
+2026-05-03T20:43:56.4003921Z ##[endgroup]
+2026-05-03T20:43:56.4037441Z [command]/usr/bin/git log -1 --format=%H
+2026-05-03T20:43:56.4059129Z 559c0a53d0837643233a0aa0c33e3f1ea397a973
